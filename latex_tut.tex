@@ -1,0 +1,92 @@
+% LaTeX Example
+% By Jeff Tyson (jmtyson@cs.ucsb.edu)
+\documentclass[11pt]{article}
+
+
+% see this page for package information: http://en.wikibooks.org/wiki/LaTeX/Packages
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{placeins}
+\usepackage{float}
+% un-comment below if you like the aesthetics of times fonts
+%\usepackage{times}
+\usepackage{cancel}
+\usepackage{listings}
+\usepackage{color}
+%\usepackage{relsize}
+
+% Changes the enumation style for the first and second levels See http://www.haptonstahl.org/latex/basics_lists.php
+\renewcommand{\labelenumi}{1.\arabic{enumi}.}
+\renewcommand{\labelenumii}{(\alph{enumii})}
+
+% settings taken from http://en.wikibooks.org/wiki/LaTeX/Packages/Listings
+\lstset{ %
+language=Octave,                % choose the language of the code
+basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+numbers=left,                   % where to put the line-numbers
+numberstyle=\footnotesize,      % the size of the fonts that are used for the line-numbers
+stepnumber=2,                   % the step between two line-numbers. If it's 1 each line 
+                                % will be numbered
+numbersep=5pt,                  % how far the line-numbers are from the code
+backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+showspaces=false,               % show spaces adding particular underscores
+showstringspaces=false,         % underline spaces within strings
+showtabs=false,                 % show tabs within strings adding particular underscores
+frame=single,	                  % adds a frame around the code
+tabsize=2,	                    % sets default tabsize to 2 spaces
+captionpos=b,                   % sets the caption-position to bottom
+breaklines=true,                % sets automatic line breaking
+breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+title=\lstname,                 % show the filename of files included with \lstinputlisting;
+                                % also try caption instead of title
+escapeinside={\%*}{*)},         % if you want to add a comment within your code
+morekeywords={*,...}            % if you want to add more keywords to the set
+}
+
+\begin{document}
+
+% set the title
+\title{Introduction to Computational Science\\
+\LaTeX~Tutorial}
+
+\author{Jeff Tyson}
+
+\maketitle
+
+\begin{enumerate}
+  \item Here is some Matlab code from the book:
+  % I found the m file at http://www.mathworks.com/moler/ncmfilelist.html
+  % The label is necessary if you are going to refer to the listing later
+  % The caption gives the reference context (aka 'Listing 1: ...'
+  \lstinputlisting[language=Matlab, label=lst:fern, caption={Generates a fractal fern}]{finitefern.m}
+  
+  % use this command to prevent your float from, well, floating off to a place you don't want
+  \FloatBarrier
+  
+  % useful for homework number, move the enumerate counter so the next item produces '1.5.'
+  \setcounter{enumi}{4}
+  \item Now, let's include the output as a figure:
+  % the 'H' does a good job of placing the figure *right here*
+  % more about floats: http://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions
+  \begin{figure}[H]
+    \begin{center}
+      % the graphic's width will be 10cm on the page.
+      % the is no need to add a file extension with the includegraphics command
+      \includegraphics[width=10cm]{finitefern}
+      \caption{Fern as drawn by Matlab}
+      % give it a label so we can refer to it later
+      \label{fig:fern}
+    \end{center}
+  \end{figure}
+  \FloatBarrier
+
+  \setcounter{enumi}{12}
+  \item It is useful to be able to refer to the listings and figures that were just created.
+    For example, listing~\ref{lst:fern} generates figure~\ref{fig:fern}.
+\end{enumerate}
+
+\end{document}
